@@ -36,7 +36,7 @@ int main() {
 
     printf("%d\n", min_diff);
 
-    free(A);
+    //free(A);
 
     return 0;
 }
