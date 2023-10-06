@@ -1,0 +1,46 @@
+#include<iostream>
+#include<vector>
+#include<algorithm> //reverse함수
+#include<string> // getline() 함수
+using namespace std;
+
+int  main(void)
+{
+    int n,m;
+    cin >> n >> m;
+    cin.ignore(); //입력버퍼를 비워주는 함수 '\n'개행문자를 무시해 getline()함수가 잘 작동되도록 해줌.
+
+    vector<vector<int>> arr_2(n,vector<int>(m));
+
+    for(int i=0; i<n; i++)
+    {
+        string line;
+        getline(cin,line);
+
+        for(int j=0; j<m; j++)
+        {
+            arr_2[i][j] = line[j] - '0';
+        }
+    }
+
+    for(int i=0; i<n; i++)
+    {
+        reverse(arr_2[i].begin(),arr_2[i].end());
+    }
+
+    for(int i=0; i<n; i++)
+    {
+        for(int j=0; j<m; j++)
+        {
+            cout << arr_2[i][j];
+        }
+        cout << '\n';
+    }
+
+    return 0;
+}
+
+---------------------------------------------------------------------
+//reverse함수를 이용하여 문자열을 역순으로 바꿔줌
+//--> reverse(arr.beigin(),arr.end())이런식으로 사용 --> 2차원배열일떄는 행의 번호를 받아서 사용 
+//getline함수를 이용하기 때문에 입력 후 개행문자를 비워줘야함(cin.ignore()) getline이 \n을 읽어서 아무것도 아닌 것을 반환하기 때문.
