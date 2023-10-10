@@ -100,7 +100,7 @@ int main(void)
 }
 
 -----------------------------------------------------간단한 정답---------------------------------------------------
-  #include<iostream>
+#include<iostream>
 #include<algorithm>
 using namespace std;
 
@@ -118,7 +118,7 @@ int main(void)
         res = min(res, price - 500);
     }
     if (num >= 10) {
-        res = min(res, static_cast<int>(price * 0.9));
+        res = min(res, static_cast<int>(price * 0.9)); //static_cast<int>(value) --> value값을 캐스팅해준다. double형태를 int형 변수로 바꿔주는 것.
     }
     if (num >= 15) {
         res = min(res, price - 2000);
@@ -131,3 +131,5 @@ int main(void)
 
     return 0;
 }
+
+
