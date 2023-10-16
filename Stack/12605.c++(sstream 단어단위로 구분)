@@ -1,0 +1,40 @@
+#include<iostream>
+#include<stack>
+#include<string>
+#include<sstream>
+using namespace std;
+
+int main(void)
+{
+    int N;
+    cin >> N;
+    cin.ignore();
+
+    stack<string> st;
+    for(int i=1; i<=N; i++)
+    {
+        string sentence;
+        getline(cin,sentence);
+
+        stringstream ss(sentence); //stringsteam 객체 ss를 생성함 ss에다가 sentence안의 문자열을 저장. 
+
+        string word;
+        while(ss >> word) { //하나씩 넣다가 ss에서 word로 더이상 넣을게 없을 때 while(false)가 되므로 자동 종료.
+            st.push(word);
+        }
+
+        cout << "Case #" << i << ": ";
+        while(!st.empty()){
+            cout << st.top() << " ";
+            st.pop();
+        }
+        cout << "\n";
+
+    }
+
+    return 0;
+}
+
+----------------------------------------------------------------------------------------------------------
+  //stringstream은 >> << 와 같은 삽입과 추출을 지원함. 더 편리함
+  //ss >> word하면 ss의 문자열의 내용을 공백,탭,개행문자(enter)를 기준으로 나눠서 넣음.
