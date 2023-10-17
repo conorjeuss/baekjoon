@@ -1,0 +1,45 @@
+#include<iostream>
+#include<vector>
+#include<deque>
+using namespace std;
+
+int main(void)
+{
+    int N,K;
+    cin >> N >> K;
+
+    deque<int> d;
+
+    for(int i=1; i<=N; i++)
+    {
+        d.push_back(i);
+    }
+
+    vector<int> res(N,0);
+    int index = 0;
+
+    while(!d.empty())
+    {
+        for(int j=0; j<K-1; j++)
+        {
+            d.push_back(d.front());
+            d.pop_front();
+        }
+
+        res[index] = d.front();
+        d.pop_front();
+        index = index + 1;
+    }
+
+    cout << "<";
+    for(int i = 0; i < N; i++)
+    {
+        cout << res[i];
+        if(i != N-1) 
+        {
+            cout << ", ";
+        }
+    }
+    cout << ">";
+    return 0;
+}
