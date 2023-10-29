@@ -1,0 +1,42 @@
+#include<iostream>
+#include<vector>
+#include<string>
+using namespace std;
+
+int main(void)
+{
+
+    while(1)
+    {
+        vector<int> alphabet(26,0);
+        string line;
+        char study;
+
+        getline(cin,line); //여기서 cin.ignore()하면 입력이이상해짐 처음부터 getline을 사용했기때문이다.
+
+        study = line[0];
+
+        if(study == '#') {
+            break;
+        }
+
+        for(char ch : line) {
+            if(ch >= 'a' && ch <= 'z') {
+                alphabet[ch-'a']++;
+            }
+            else if(ch >= 'A' && ch <= 'Z')
+            {
+                alphabet[ch-'A']++;
+            }
+        }
+
+        cout << study << " " << alphabet[study - 'a'] - 1 << "\n";
+
+    }
+    return 0;
+}
+
+-------------------------------------------------------------------------------
+    /*getline(_)함수는 입력버퍼에있는 \n(개행문자)까지 읽기 때문에 만약 cin과 같은 방식으로 입력을 받았다면 개행문자가 입력버퍼에서 제거되지 않았기 때문에 개행문자까지 읽어들이기 때문에 
+    문제가 될 수 있다. 따라서 이럴 경우에는 오류를 방지하기 위해 cin.ignore()함수를 사용하여 입력버퍼를 비워준 후 getline(cin,--)을 해줘야한다.*/
+    //그러나 getline()만 쓴다면 입력후 \n를 자동으로 제거하기 때문에 입력버퍼를 비워줄 필요가 없다.
