@@ -1,0 +1,36 @@
+#include<iostream>
+#include<vector>
+#include<algorithm>
+using namespace std;
+
+int main(void)
+{
+    int n;
+    cin >> n;
+
+    vector<int> arr_n(n);
+    for(int i=0; i<n; i++)
+    {
+        cin >> arr_n[i];
+    }
+
+    vector<int> dp(n);
+    dp[0] = arr_n[0];
+    int res = arr_n[0];
+    for(int i=1; i<n; i++)
+    {
+        dp[i] = max(arr_n[i], + dp[i-1]+arr_n[i]);
+        
+        res = max(res,dp[i]);
+    }
+
+    cout << res;
+
+    return 0;
+}
+
+
+-----------------------------------------------------------------------------------
+  //카데인 알고리즘 구현
+  //부분수열의 합을 계산할때 용이하게 사용됨.
+  //**카데인 알고리즘은 O(n)의 시간 복잡도를 가지기 때문에 빠르게 처리가능함.
