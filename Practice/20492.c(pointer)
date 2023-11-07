@@ -1,0 +1,15 @@
+#include<stdio.h>
+
+int main(void)
+{
+    int price;
+    scanf("%d",&price);
+
+    int *ptr_price = &price;
+
+    int res1_price = *ptr_price * 0.78;
+    int res2_price = *ptr_price - (*ptr_price * 0.2 * 0.22) ;
+
+    printf("%d %d\n",res1_price,res2_price);
+    return 0;
+}
