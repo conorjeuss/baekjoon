@@ -1,0 +1,29 @@
+#include<iostream>
+using namespace std;
+
+int GCD(int a,int b)
+{
+    if(b == 0) return a;
+    else {
+        return GCD(b,a%b);
+    }
+}
+
+int main(void)
+{
+    int test_case;
+    cin >> test_case;
+
+    while(test_case--)
+    {
+        long long a,b;
+        cin >> a >> b;
+
+        int gcd = GCD(a,b);
+        long long lcm = (a*b) / gcd;
+
+        cout << lcm << "\n";
+    }
+
+    return 0;
+}
