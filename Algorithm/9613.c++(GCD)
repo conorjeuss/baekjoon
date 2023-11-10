@@ -1,0 +1,46 @@
+#include<iostream>
+#include<vector>
+#include<numeric> //accumulate사용하기위함
+using namespace std;
+
+int GCD(int a,int b)
+{
+    if(b == 0) {
+        return a;
+    }
+    else {
+        return GCD(b,a%b);
+    }
+}
+
+int main(void)
+{
+    int test_case;
+    cin >> test_case;
+
+    while(test_case--)
+    {
+        int num;
+        cin >> num;
+
+        long long res_num = 0;
+        vector<int> arr_gcd(num,0);
+
+        for(int i=0; i<num; i++)
+        {
+            cin >> arr_gcd[i];
+        }
+
+        for(int p=0; p<num-1; p++)
+        {
+            for(int q=p+1; q<num; q++)
+            {
+                res_num += GCD(arr_gcd[p],arr_gcd[q]);
+            }
+        }
+
+        cout << res_num <<"\n";
+
+    }
+    return 0;
+}
