@@ -1,0 +1,42 @@
+#include<iostream>
+#include<sstream>
+#include<vector>
+#include<algorithm>
+using namespace std;
+
+long long GCD(long long a, long long b) {
+    if (b == 0) {
+        return a;
+    } else {
+        return GCD(b, a % b);
+    }
+}
+
+int main(void) {
+    int test_case;
+    cin >> test_case;
+    cin.ignore(); // 이전 입력에서 남은 개행 문자 제거
+
+    while (test_case--) {
+        string line;
+        getline(cin, line); // 한 줄 전체를 입력 받음
+        istringstream iss(line); //istringstream객체 iss를 생성해서 입력받은 문자열을 저장함
+
+        vector<long long> arr_gcd;
+        long long num;
+        while (iss >> num) { //iss(line)에서 long long변수로 설정된 숫자들을 끝날때까지 읽어서 arr_gcd에 넣음.
+            arr_gcd.push_back(num);
+        }
+
+        long long res_max = 0;
+        int M = arr_gcd.size();
+        for (int p = 0; p < M - 1; p++) {
+            for (int q = p + 1; q < M; q++) {
+                res_max = max(GCD(arr_gcd[p], arr_gcd[q]), res_max);
+            }
+        }
+
+        cout << res_max << "\n";
+    }
+    return 0;
+}
