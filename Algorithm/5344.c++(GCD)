@@ -1,0 +1,28 @@
+#include<iostream>
+using namespace std;
+
+void GCD(int a, int b)
+{
+    if(b == 0) {
+        cout << a << "\n";
+    }
+    else {
+        return GCD(b,a%b);
+    }
+}
+
+int main(void)
+{
+    int test_case;
+    cin >> test_case;
+
+    while(test_case--)
+    {
+        int a,b;
+        cin >> a >> b;
+
+        GCD(a,b);
+    }
+
+    return 0;
+}
