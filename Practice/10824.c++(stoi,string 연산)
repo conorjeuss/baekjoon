@@ -1,0 +1,25 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+int main(void) {
+    string A, B, C, D;
+
+    cin >> A >> B >> C >> D;
+
+    string AB = A + B;
+    string CD = C + D;
+
+    // 결합된 문자열을 long long 정수로 변환
+    long long numAB = stoll(AB); 
+    long long numCD = stoll(CD);
+
+    long long result = numAB + numCD;
+
+    cout << result << endl;
+
+    return 0;
+}
+//stoi ==> string to int 문자열을 int 형으로 변환시켜줌
+//stoll ==> sting to long long 
+//string이나 char형태의 변수를 + 연산하면 뒤로 붙는다. ex) 10 + 20 ==> 1020
