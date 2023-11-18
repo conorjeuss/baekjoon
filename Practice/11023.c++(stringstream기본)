@@ -1,0 +1,27 @@
+#include<iostream>
+#include<string>
+#include<vector> //push_back
+#include<string>
+#include<cctype> //to lower, to upper
+#include<algorithm> //trasform
+#include<sstream>
+using namespace std;
+
+int main(void)
+{
+    string line;
+    getline(cin,line);
+
+    stringstream k(line);
+
+    int num,sum =0;
+
+    while(k >> num)
+    {
+        sum = sum + num;
+    }
+
+    cout << sum;
+    
+    return 0;
+}
