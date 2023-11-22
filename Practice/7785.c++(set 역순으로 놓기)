@@ -1,0 +1,38 @@
+#include<iostream>
+#include<vector>
+#include<sstream>
+#include<set>
+#include <functional>
+using namespace std;
+
+int main(void)
+{
+    int n;
+    cin >> n;
+
+    set<string,greater<string>> st; //set 컨테이너 구조에서 greater을 사용하여 내림차순 정렬 원래는 오름차순 정렬임
+    while(n--)
+    {
+        string name;
+        string work;
+        
+        cin >> name >> work;
+
+        if(work == "enter")
+        {
+            st.insert(name);
+        }
+        if(work == "leave")
+        {
+            st.erase(name);
+        }
+
+    }
+
+    for(string s : st) 
+    {
+        cout << s << "\n";
+    }
+
+    return 0;
+}
