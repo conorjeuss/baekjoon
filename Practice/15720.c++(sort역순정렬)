@@ -1,0 +1,61 @@
+#include<iostream>
+#include<vector>
+#include<algorithm>
+using namespace std;
+
+int main(void)
+{
+    int b,c,d;
+    cin >> b >> c >> d;
+
+    vector<int> arr_b(b);
+    vector<int> arr_c(c);
+    vector<int> arr_d(d);
+
+    int min_num = min(min(b,c),d);
+    
+    int res_before = 0;
+    float res_after = 0;
+    for(int i=0; i<b; i++)
+    {
+        cin >> arr_b[i];
+        res_before += arr_b[i];
+    }
+    for(int i=0; i<c; i++)
+    {
+        cin >> arr_c[i];
+        res_before += arr_c[i];
+
+    }
+    for(int i=0; i<d; i++)
+    {
+        cin >> arr_d[i];
+        res_before += arr_d[i];
+
+    }
+
+    sort(arr_b.begin(),arr_b.end(),greater<int>()); //sort함수에서 내림차순 정렬
+    sort(arr_c.begin(),arr_c.end(),greater<int>());
+    sort(arr_d.begin(),arr_d.end(),greater<int>());
+
+    for(int i=0; i<min_num; i++)
+    {
+        res_after += arr_b[i];
+    }
+    for(int i=0; i<min_num; i++)
+    {
+        res_after += arr_c[i];
+    }
+    for(int i=0; i<min_num; i++)
+    {
+        res_after += arr_d[i];
+    }
+
+    res_after = (res_after * 0.1);
+
+    int res = res_before - res_after;
+
+    cout << res_before << "\n" << res;
+
+    return 0;
+}
