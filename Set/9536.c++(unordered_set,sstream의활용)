@@ -1,0 +1,37 @@
+#include <iostream>
+#include <sstream>
+#include <unordered_set>
+#include <string>
+using namespace std;
+
+int main() {
+    int T;
+    cin >> T;
+    cin.ignore();
+
+    while (T--) {
+        string recordedSounds, animal, goes, sound;
+        getline(cin, recordedSounds);
+
+        unordered_set<string> animalSounds; //set과달리 자료들을 정렬하지 않음.
+        while (true) {
+            getline(cin, animal);
+            if (animal == "what does the fox say?") {
+                break;
+            }
+            stringstream ss(animal);
+            ss >> animal >> goes >> sound;
+            animalSounds.insert(sound);
+        }
+
+        stringstream ss2(recordedSounds);
+        string word;
+        while (ss2 >> word) {
+            if (animalSounds.find(word) == animalSounds.end()) { //발견하지 못할 시에 출력
+                cout << word << " ";
+            }
+        }
+        cout << endl;
+    }
+    return 0;
+}
