@@ -1,0 +1,44 @@
+#include<iostream>
+#include<vector>
+#include<algorithm>
+#include<sstream>
+#include<set>
+#include<queue>
+#include<unordered_map>
+#include<cctype> //lower,upper
+using namespace std;
+
+int main(void)
+{
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+
+    int t;
+    cin >> t;
+
+    while(t--)
+    {
+        int num;
+        cin >> num;
+
+        vector<int> arr_n(num,0);
+        int min_n = 1000001;
+        int max_n = -1000001;
+
+        for(int i=0; i<num; i++)
+        {
+            cin >> arr_n[i];
+            if(arr_n[i] < min_n) {
+                min_n = arr_n[i];
+            }
+            if(arr_n[i] > max_n) {
+                max_n = arr_n[i];
+            }
+        }
+        //int min_num = *min_element(arr_n.begin(),arr_n.end());
+        //int max_num = *max_element(arr_n.begin(),arr_n.end());
+
+        cout << min_n << " " << max_n << "\n";
+    }
+    return 0;
+}
