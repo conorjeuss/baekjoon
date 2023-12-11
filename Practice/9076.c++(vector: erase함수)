@@ -1,0 +1,43 @@
+#include<iostream>
+#include<vector>
+#include<algorithm>
+using namespace std;
+
+int main(void)
+{
+    int N;
+    cin >> N;
+
+    for(int i=0; i<N; i++)
+    {
+        vector<int> arr;
+
+        for(int j=0; j<5; j++)
+        {
+            int k;
+            cin >> k;
+
+            arr.push_back(k);
+        }
+
+        sort(arr.begin(),arr.end());
+
+        arr.erase(arr.begin() + 0);
+        arr.erase(arr.begin() + 3);
+
+        int sum = 0;
+        for(int num : arr)
+        {
+            sum += num;
+        }
+
+        if(arr[2] - arr[0] >= 4) {
+            cout << "KIN\n";
+        }
+        else {
+            cout << sum << "\n";
+        }
+
+    }
+    return 0;
+}
