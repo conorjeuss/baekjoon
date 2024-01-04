@@ -1,0 +1,21 @@
+#include<iostream>
+#include<string>
+#include<vector> //push_back
+#include<string>
+#include<cctype> //to lower, to upper
+#include<algorithm> //trasform
+#include<sstream>
+#include<unordered_set>
+#include<math.h>
+using namespace std;
+
+int main(void)
+{
+    double n;
+    cin >> n;
+
+    int res = sqrt(n);
+
+    printf("The largest square has side length %d.",res);
+    return 0;
+}
