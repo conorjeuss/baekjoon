@@ -1,0 +1,67 @@
+#include<iostream>
+#include<vector>
+#include<algorithm>
+#include<sstream>
+#include<set>
+#include<queue>
+#include<unordered_map>
+#include<cctype> //lower,upper
+
+using namespace std;
+
+int main(void)
+{
+    long long test;
+    cin >> test;
+
+    while(test--) {
+        long long res = 0;
+
+        long long n;
+        cin >> n;
+        vector<vector<long long>> arr_mis(n,vector<long long>(3));
+
+        for(int i=0; i<n; i++)
+        {   
+            for(int j=0; j<3; j++) {
+                cin >> arr_mis[i][j];
+                /*if(j==0) {
+                    total_k += arr_mis[i][j];
+                }
+                else if(j==1) {
+                    total_d += arr_mis[i][j];
+                }
+                else {
+                    total_a += arr_mis[i][j];
+                }*/
+            }
+        }
+
+        long long k,d,a;
+        cin >> k >> d >> a;
+
+        for(int i=0; i<n; i++) {
+            long long res_money = 0; //매출력마다 결과값저장
+
+            res_money = (arr_mis[i][0] * k) - (arr_mis[i][1] * d) + (arr_mis[i][2] * a);
+
+            if(res_money >= 0) {
+                res += res_money;
+            }
+            else {
+                continue;
+            }
+            
+        }
+
+        cout << res << "\n";
+        
+    }
+    return 0;
+}
+------------------------------------------------------------------
+  //KDA는 무조건 3으로 고정된 값이니깐 K(n),D(n),A(n)로 배열을 생성해도된다.
+  //배열의 형태를 나타내면 
+  K:[][][][][][][][][][][]--- indexK[i]로 접근가능
+  D:[][][][][][][][][][][]---
+  A:[][][][][][][][][][][]---
