@@ -1,0 +1,38 @@
+#include<iostream>
+#include<vector>
+#include<algorithm>
+#include<sstream>
+#include<set>
+#include<queue>
+#include<unordered_map>
+#include<cctype> //lower,upper
+
+using namespace std;
+
+int main(void)
+{
+    string mbti;
+    cin >> mbti;
+
+    string res_mbti;
+
+    for(int i=0; i<4; i++) {
+        if(i==0) {
+            res_mbti[i] = 142 - mbti[i];
+        }
+        else if(i==1) {
+            res_mbti[i] = 161 - mbti[i];
+        }
+        else if(i==2) {
+            res_mbti[i] = 154 - mbti[i];
+        }
+        else {
+            res_mbti[i] = 154 - mbti[i];
+        }
+    }
+
+    for(int j=0; j<4; j++) {
+        cout << res_mbti[j];
+    }
+    return 0;
+}
