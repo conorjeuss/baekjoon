@@ -1,0 +1,53 @@
+#include<iostream>
+#include<vector>
+#include<algorithm>
+#include<sstream>
+#include<set>
+#include<queue>
+#include<unordered_map>
+#include<cctype> //lower,upper
+using namespace std;
+
+struct s
+{
+    /* data */
+    int call;
+    int data;
+} mystruct; //구조체를 이용하려면 구조체에 이름을 부여해야함.
+
+//struct s mystruct; (이렇게도 가능)
+
+
+int min_cost(int call,int data) {
+
+    vector<int> arr = {(call * 30) + (data * 40),(call * 35) + (data * 30),(call * 40) + (data * 20)}; //배열의크기를 명시하지 않아야함 
+    int min_res = arr[0];
+
+    for(int i=1; i<=2; i++) {
+        if(arr[i] < min_res) {
+            min_res = arr[i];
+        }
+    }
+
+    return min_res;
+}
+
+
+int main(void)
+{
+    while(1)
+    {
+        //int c >> d;
+        cin >> mystruct.call >> mystruct.data;
+
+        if(mystruct.call == 0 && mystruct.data == 0) {
+            break;
+        }
+
+        int res = min_cost(mystruct.call,mystruct.data);
+        
+        cout << res << "\n";
+    }
+
+    return 0;
+}
