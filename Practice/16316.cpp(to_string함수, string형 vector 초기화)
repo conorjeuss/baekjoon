@@ -1,0 +1,37 @@
+#include<iostream>
+#include<string>
+#include<vector> //push_back
+#include<string>
+#include<cctype> //to lower, to upper
+#include<algorithm> //trasform
+#include<sstream>
+#include<unordered_set>
+#include<math.h>
+using namespace std;
+
+int main(void)
+{
+    int n;
+    cin >> n;
+
+    bool right = true;
+
+    vector<string> h(n+1,""); //string은 ""로 빈문자열로 초기화 시킬 수 있음.
+    for(int i=1; i<=n; i++)
+    {
+        cin >> h[i];
+        if(h[i] == "mumble" || h[i] == to_string(i)) continue; //여기서 to_string대신에 string(1, '0' + i)을 사용해도됨. h가 string형이기 때문에 h[i] == i + '0'만하면 string과 char를 비교하는 것이므로 사용불가 --> stirng으로 형변환
+        else {                                                 //string(n,char)은 길이가 n인 문자열을 생성하는 것임 하지만 이문제에서는 10이 넘어가면 길이가 1이 넘기때문에 복잡해짐 ==> to_string()으로 하는 것이 편함.
+            right = false;
+        }
+    }
+
+    if(right) {
+        cout << "makes sense\n";
+    }
+    else {
+        cout << "something is fishy\n";
+    }
+
+    return 0;
+}
