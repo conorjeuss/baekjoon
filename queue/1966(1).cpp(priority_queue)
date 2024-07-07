@@ -1,0 +1,52 @@
+#include <iostream>
+#include <queue>
+#include <vector>
+
+using namespace std;
+
+int main(void) {
+    int tc;
+    cin >> tc;
+
+    while (tc--) {
+        int n, m; // m은 인덱스값
+        cin >> n >> m;
+
+        queue<pair<int, int>> q;
+        priority_queue<int> pq;
+
+        for (int i = 0; i < n; i++) {
+            int k;
+            cin >> k;
+            q.push(make_pair(k, i));
+            pq.push(k); // 우선순위 큐에 값 추가
+        }
+
+        int cnt = 0;
+        int cur_max_val = pq.top(); //priority_queue는 최대 힙(max-heap)으로 동작하기 때문에 일반적인 queue에는 없는 top함수를 사용하여 가장 큰 값을 찾을 수 있다.
+
+        while (!q.empty()) {
+            int current_val = q.front().first;
+            int current_idx = q.front().second;
+            q.pop();
+
+            if (current_val == cur_max_val) { //가장큰 값과 같다면 pq에서 없애고 새로운 top을 cur_max_val로 설정
+                cnt++;
+                pq.pop();
+                cur_max_val = pq.top();
+                
+                if (current_idx == m) { // 찾고자 하는 인덱스라면 출력 후 종료
+                    cout << cnt << endl;
+                    break;
+                }
+                
+            } 
+            else { //그게아니라 다른 수라면 그냥 뒤로보내기
+                q.push(make_pair(current_val, current_idx)); // 큐의 맨 뒤로 이동
+            }
+        }
+    }
+
+    return 0;
+}
+//자료구조 queue에서 가장큰 값을 빠르게 찾고 싶다면 priority_queue를 사용하여 값을 넣고 top함수를 사용하여 값을 얻을 수 있다.
