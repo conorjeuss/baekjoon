@@ -1,0 +1,36 @@
+#include<iostream>
+#include<string>
+#include<vector> //push_back
+#include<string>
+#include<cctype> //to lower, to upper
+#include<algorithm> //trasform
+#include<sstream>
+#include<unordered_set>
+#include<math.h>
+#include<tuple>
+
+using namespace std;
+
+int main(void)
+{
+    string k;
+    cin >> k;
+
+    int kl = k.length();
+
+    int ans = 0;
+
+    for(int i=0; i<kl; i++)
+    {
+        if(k[i] == 'A'|| k[i] == 'B'|| k[i] == 'C'|| k[i] == 'D'|| k[i] == 'E'|| k[i] == 'F' ) {
+            ans = ans + (pow(16,kl-i-1) * (k[i] - 'A' + 10));
+        }
+        else {
+            ans = ans + (pow(16,kl-i-1)) * (k[i] - '0');
+        }
+    }
+
+    cout << ans;
+
+    return 0;
+}
