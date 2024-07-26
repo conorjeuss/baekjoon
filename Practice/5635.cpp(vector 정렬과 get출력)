@@ -1,0 +1,35 @@
+#include<iostream>
+#include<vector>
+#include<algorithm>
+#include<sstream>
+#include<set>
+#include<queue>
+#include<unordered_map>
+#include<cctype> //lower,upper
+using namespace std;
+
+int main(void)
+{
+    int n;
+    cin >> n;
+
+    vector<tuple<int,int,int,string>> st;
+
+    for(int i=0; i<n; i++)
+    {
+        string name;
+        cin >> name;    
+
+        int year,month,day;
+        cin >> day >> month >> year;
+
+        st.emplace_back(year,month,day,name); //vector에 emplace_back을 넣으면 push_back과 비슷한 형식으로 값이 저장된다. 또한 vector는 1개지만 여러개의
+        //케이스들을 모두 담을 수 있다.
+    }
+
+    sort(st.begin(),st.end());
+
+    cout << get<3>(st.back()) << endl; //get은 3개이상의 원소갯수를 가진 vector에서 사용됨. 원하는 인덱스의 값을 출력할수있게도와줌
+    cout << get<3>(st.front()) << endl;
+    return 0;
+}
