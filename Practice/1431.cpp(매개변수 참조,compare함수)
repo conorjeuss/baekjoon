@@ -1,0 +1,81 @@
+#include<iostream>
+#include<vector>
+#include<algorithm>
+#include<sstream>
+#include<set>
+#include<queue>
+#include<unordered_map>
+#include<cctype> //lower,upper,isdigit
+#include<map>
+using namespace std;
+
+//숫자의 합을 계산하는 함수
+int sum_of_digit(const string& s)
+{
+    int sum = 0;
+    int len = s.length();
+
+    for(int i=0; i<len; i++)
+    {
+        if(isdigit(s[i])) {
+            sum += s[i] - '0';
+        }
+    }
+
+    return sum;
+}
+
+//비교정렬 함수.
+bool compare(const string& a,const string& b)
+{
+    if(a.length() != b.length())
+    {
+        return a.length() < b.length();
+    }
+    else {
+        int sum_a = sum_of_digit(a);
+        int sum_b = sum_of_digit(b);
+
+        if(sum_a != sum_b)
+        {
+            return sum_a < sum_b; //합이 더 작으면 true값이 나오기때문에 합이 작은순으로 정렬됨. (조건만족)
+        }
+        else {
+            return a < b; //사전순
+        }
+    }
+
+}
+
+
+int main(void)
+{
+    int n;
+    cin >> n;
+
+    vector<string> vc(n);
+
+    for(int i=0; i<n; i++)
+    {
+        cin >> vc[i];
+    }
+
+    sort(vc.begin(),vc.end(),compare);
+
+    for(string word : vc)
+    {
+        cout << word << endl;
+    }
+    return 0;
+}
+
+//const string& s : 매개변수를 참조할때 원본 데이터에서 참조한다. 그러나 상수(변하지않음)로 사용되기 떄문에 함수내에서 수정 할 수 없다. --> 원본데이터도 자동으로 
+  바뀌지 않음.
+  string& s : 원본데이터를 참조한다. 수정하고싶을 경우에 함수내에서 수정가능하다. 수정하게 되면 원본데이터도 수정된다.
+  string s : 원본데이터를 참조하지 않는다. 원본을 복사하여 참조하는 방식이다. 하지만 데이터 복사 비용이 발생한다는 단점이있다. 매개변수로 참조하게되면 수정이 가능
+  하지만 수정할 시 원본데이터는 변하지 않는다.
+//compare함수에 대한 설명
+  1.bool 형태 :  bool compare(const int& a, const int& b) {return a < b;} --> 오름차순정
+    a가 b보다 작으면 true값을 반환 -> a가 b보다 앞에와야함. 
+    a가 b보다 크면 false값을 반환 -> b가 a보다 앞에와야함.
+    
