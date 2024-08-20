@@ -1,0 +1,106 @@
+#include <iostream>
+#include <deque>
+#include <string>
+#include <sstream>
+#include <algorithm>
+
+using namespace std;
+
+int main() {
+
+    int t;
+    cin >> t;
+
+    while (t--) {
+        string command;
+        //getline(cin,command);
+        //cin.ignore();
+        cin >> command;
+
+        int n;
+        cin >> n;
+
+        deque<int> dq;
+
+        string array_str;
+        //getline(cin, array_str); 
+        cin >> array_str;
+
+        // []를 없애고 중간에있는 숫자와 ,만 뽑아낸다.
+        array_str = array_str.substr(1, array_str.size() - 2);
+
+        if (!array_str.empty()) {
+            stringstream ss(array_str);
+            string num_str;
+
+            while (getline(ss, num_str, ',')) { //,단위로 구분하여 숫자만num_str에저장
+                int num = stoi(num_str); //str숫자를 int값으로 변환하여 dq에 넣음
+                dq.push_back(num);
+            }
+        }
+
+        bool check = true;
+        bool con = false;
+        
+        for (char c : command) {
+            if (c == 'R') {
+                check = !check;
+            } else if (c == 'D') {
+                if (dq.empty()) {
+                    cout << "error" << endl;
+                    con = true;
+                    break;
+                } else {
+                    if (check) {
+                        dq.pop_front();
+                    } else {
+                        dq.pop_back();
+                    }
+                }
+            }
+        }
+
+        if (con) {
+            continue;
+        } else {
+            cout << "[";
+            if (check) { //true값이면 순서대로 출력
+                while (!dq.empty()) {
+                    cout << dq.front();
+                    dq.pop_front();
+                    if (!dq.empty()) cout << ",";
+                }
+            } else { 
+                while (!dq.empty()) {
+                    cout << dq.back();
+                    dq.pop_back();
+                    if (!dq.empty()) cout << ",";
+                }
+            }
+            cout << "]" << endl;
+        }
+    }
+
+    return 0;
+}
+//getline과 cin의 활용에대해 자세히 알아야함.
+/*
+int main() {
+
+    int t;
+    cin >> t;
+
+    while (t--) {
+        string command;
+        cin.ignore();
+        getline(cin, command);  <======이부분을 cin >> command;로 바꾸고 바로위의 코드를 없애도 무방하다.
+
+        int n;
+        cin >> n;
+        cin.ignore(); -->cin에서 /n(개행문자)가 입력버퍼에 남아있기때문에 105번째 코드에서 개행문자를 읽는걸 방지하기위해 cin.ignore()함수를 사용하여 버퍼를 비워준다.
+
+        deque<int> dq;
+
+        string array_str;
+        getline(cin, array_str);
+*/ 메인함수부분에서 입력받는 부분을 이렇게 작성하면 정답이 이상하게 출력된다.
