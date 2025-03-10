@@ -1,0 +1,38 @@
+import java.util.Scanner;
+import java.util.ArrayList;
+
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        int n;
+        n = scanner.nextInt();
+
+        //ArrayList<ArrayList<Integer>> arrayList = new ArrayList<>();
+        int[][] arrayList = new int[2][n];
+
+        for(int i=0; i<n; i++) {
+            arrayList[0][i] = scanner.nextInt();
+            arrayList[1][i] = i + 1;
+        }
+
+        int sum = 0;
+        int st;
+        st= scanner.nextInt();
+
+        for(int j=0; j<st; j++) {
+            int c;
+            c = scanner.nextInt();
+
+            for(int k=0; k<n; k++) {
+                if(c == arrayList[1][k]) {
+                    sum += arrayList[0][k];
+                }
+            }
+        }
+
+        System.out.println(sum);
+        scanner.close();
+    }
+}
