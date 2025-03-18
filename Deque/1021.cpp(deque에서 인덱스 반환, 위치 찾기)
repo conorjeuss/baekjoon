@@ -1,0 +1,62 @@
+#include <iostream>
+#include <deque>
+#include <algorithm>
+
+using namespace std;
+
+void calc_2(deque<int>& d) {
+    if (!d.empty()) {
+        int a = d.front();
+        d.pop_front();
+        d.push_back(a);
+    }
+}
+
+void calc_3(deque<int>& d) {
+    if (!d.empty()) {
+        int a = d.back();
+        d.pop_back();
+        d.push_front(a);
+    }
+}
+
+int main() {
+    int N, M;
+    cin >> N >> M;
+
+    deque<int> d;
+    for (int i = 1; i <= N; i++) {
+        d.push_back(i);
+    }
+
+    int res = 0;
+
+    for (int i = 0; i < M; i++) {
+        int target;
+        cin >> target;
+
+        // target의 index 찾기
+        auto it = find(d.begin(), d.end(), target);
+        size_t index = distance(d.begin(), it);
+
+        // 중앙 인덱스 계산
+        int mid_index = d.size() / 2;
+
+        if (index > mid_index) { // 오른쪽에 더 가까운 경우
+            while (d.front() != target) {
+                res++;
+                calc_3(d);
+            }
+        } else { // 왼쪽에 더 가까운 경우
+            while (d.front() != target) {
+                res++;
+                calc_2(d);
+            }
+        }
+
+        d.pop_front(); // 찾은 원소 제거
+    }
+
+    cout << res << endl;
+    return 0;
+}
