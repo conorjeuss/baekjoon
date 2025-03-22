@@ -1,0 +1,62 @@
+import java.util.Scanner;
+import java.util.ArrayList;
+
+
+public class Main {
+    static void print_c(boolean check,int n) {
+        if(check) {
+            System.out.printf("Case #%d: YES",n);
+        }
+        else {
+            System.out.printf("Case #%d: NO",n);
+        }
+        System.out.println();
+    }
+
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        int test_case;
+        test_case = scanner.nextInt();
+
+        int[] arr = new int[3];
+
+
+        for(int i=0; i<test_case; i++)
+        {
+            for(int j=0; j<3; j++) {
+                arr[j] = scanner.nextInt();
+            }
+
+            boolean check = true;
+
+            int max_num = arr[0];
+            max_num = Math.max(max_num,arr[1]);
+            max_num = Math.max(max_num,arr[2]);
+
+            if(max_num == arr[0]) {
+                if(Math.pow(arr[0],2) != (Math.pow(arr[1],2) + Math.pow(arr[2],2))) {
+                    check = false;
+                }
+            }
+            if(max_num == arr[1]) {
+                if(Math.pow(arr[1],2) != (Math.pow(arr[0],2) + Math.pow(arr[2],2))) {
+                    check = false;
+                }
+            }
+            if(max_num == arr[2]) {
+                if(Math.pow(arr[2],2) != (Math.pow(arr[1],2) + Math.pow(arr[0],2))) {
+                    check = false;
+                }
+            }
+
+            print_c(check,(i+1));
+
+        }
+
+        scanner.close();
+    }
+}
+//static키워드를 사용해야지 method호출 가능
+static키워드가 없으면 method를 객체없이 호출불가. 키워드를 써야지 객체없이도 이름만으로 호출가능
