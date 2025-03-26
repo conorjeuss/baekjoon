@@ -1,0 +1,45 @@
+#include<iostream>
+#include<vector>
+#include<algorithm>
+#include<queue>
+
+using namespace std;
+
+int main(void)
+{
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    
+    int N;
+    cin >> N;
+
+    vector<vector<int>> field(N,vector<int>(N));
+    priority_queue<int, vector<int>, greater<int>> pq;
+
+    for(int i=0; i<N; i++) {
+        for(int j=0; j<N; j++) {
+            cin >> field[i][j];
+
+            if(pq.size() < N) {
+                pq.push(field[i][j]);
+            }
+            else {
+                if(field[i][j] > pq.top()) {
+                    pq.pop();
+                    pq.push(field[i][j]);
+                }
+            }
+        }
+    }
+
+    if(!pq.empty()) {
+        cout << pq.top();
+    }
+
+    return 0;
+}
+
+//priority_queue<int, vector<int>, greater<int>> pq;
+우선순위 큐에서 최소힙을 선언하면 변수들이 큰것들부터 쌓이게된다.
+//아이디어
+모든 값을 우선순위 큐에넣게되면 메모리값을 너무 많이 잡아먹는다 --> pq를 5개로잡아놓고 pq.top()보다 큰게 들어올시에 pop하고 push하여 pq를 업데이트한다.
